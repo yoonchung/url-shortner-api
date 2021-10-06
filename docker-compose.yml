@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+# container_name sets the name of the container when it runs, rather than letting Docker Compose generate it automatically.
+
+# image lets Docker know what blueprint we want to build the container from, in this case, we specify postgres because we want to use PostgreSQL as the database engine.
+
+# The environment key specifies a list of environment variables, such as the name of the default database and password. Because we did not specify a username, the database username will be "postgres".
+
+# Using the ports key, we map a port on our local development machine to a port in the container so that we can connect to the database using a GUI tool. The port specified on the left of the colon is the port on the computer. The port specified on the right is the port in the container.
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: url-shortner-api
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  
+  php-apache:
+    container_name: php-apache
+    build:
+      context: ./php
+    ports:
+        - '8080:80'
+    volumes:
+      - ./src:/var/www/url-shortner-api
+      - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - postgres
