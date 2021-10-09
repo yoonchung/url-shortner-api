@@ -38,7 +38,7 @@ will return JSON with the top 100 URLs
 - http://localhost:8080/url/
 Form for inputting URLs into the system
 - http://localhost:8080/url/{shortURL}
-Will redirect to the long URL depending on `url={shortURL}`
+Will redirect to the long URL depending on `shortURL`
 - http://localhost:8080/url/top
 View for the Top 100 most frequently accessed URLs
 
