@@ -16,4 +16,8 @@ RUN apt update \
             pgsql
 WORKDIR /var/www/url-shortner-api
 
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+RUN a2enmod rewrite
+RUN service apache2 restart
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
