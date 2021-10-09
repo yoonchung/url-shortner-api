@@ -18,6 +18,13 @@ Use exmaple env file as necessary.
 cp src/.env.example src/.env
 ```
 
+Initiate php-apache container to install dependencies and initiate database table with sample data.
+``` bash
+docker-compose exec php-apache /bin/bash
+composer install
+php artisan migrate:fresh --seed
+```
+
 ## Usage
 ### API
 - POST to http://localhost:8080/api/v1/url/
