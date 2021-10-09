@@ -17,13 +17,16 @@ class UrlApiController extends Controller
     public function show(Request $request, $base64id)
     {
         if (!is_string($base64id) || strpos($base64id, ' ') || $base64id == '') {
-            return response()->json(['error' => self::ERR_INCORRECT_URL], 400, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+            return '';
         }
 
         $url = Url::find($this->base62ToDec($base64id));
         if (!$url) {
-            return response()->json(['error' => self::ERR_NOT_FOUND], 404, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+            return '';
         }
+
+        $url->count += 1;
+        $url->save();
 
         return $url->url;
     }

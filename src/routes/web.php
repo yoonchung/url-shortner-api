@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/url/top', 'App\Http\Controllers\UrlController@top');
+Route::get('/url/{url}', 'App\Http\Controllers\UrlController@show');
+Route::get('/url', 'App\Http\Controllers\UrlController@index');
+Route::post('/url', 'App\Http\Controllers\UrlController@store');
