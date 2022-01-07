@@ -41,16 +41,3 @@ Form for inputting URLs into the system
 Will redirect to the long URL depending on `shortURL`
 - http://localhost:8080/url/top
 View for the Top 100 most frequently accessed URLs
-
-## Challenges
-- Reviewing and researching how to effectively generating shorURL and designing the app with scalability in mind.
-- Also, building docker container from scratch with necessary components and setting it up.
-
-## Reasoning
-- Created docker compose container for portability and ease of use.
-- Changed API endpoint to maintain simplity and compatibility in the event of future revisioning.
-- Implemented base62 encoding and decoding in generating 7-byte-long shorURL to avoid hash collision, minimize database call and serve urls up to 62^7.
-
-## Future Improvements
-- Most importantly, it would be a great learning opportunity to make this app more scalable by adding more docker container, seperating API and web client, and etc.
-- Also if I had more time I would try to use JsonResource class for API, clean up code a little more, and finish NSFW flag.
